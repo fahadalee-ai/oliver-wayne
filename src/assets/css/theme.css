@@ -1,0 +1,628 @@
+/* Brand theme — Oliver Wayne
+   #0c1f86 navy | #0c6ea4 primary | #f4a029 accent
+*/
+:root {
+  --brand-navy: #0c1f86;
+  --brand-primary: #0c6ea4;
+  --brand-accent: #f4a029;
+
+  --blue: #0c6ea4;
+  --primary: #0c6ea4;
+  --orange: #f4a029;
+  --warning: #f4a029;
+}
+
+/* Accent highlights (ribbons / status chips) */
+.card__image-header .ribbon,
+.card__image__header .ribbon {
+  background-color: var(--brand-accent) !important;
+}
+
+.card__image-header .info,
+.card__image__header .info {
+  background-color: var(--brand-navy) !important;
+}
+
+.total__property-agent,
+.total__property-agency {
+  background-color: var(--brand-navy) !important;
+}
+
+/* Active tabs / pills stay on primary */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: var(--brand-primary);
+}
+
+.tabs__custom .nav-pills .nav-link.active {
+  background-color: var(--brand-primary);
+}
+
+/* Accent CTA option */
+.btn-warning {
+  color: #fff;
+  background-color: var(--brand-accent);
+  border-color: var(--brand-accent);
+}
+
+.btn-warning:hover,
+.btn-warning:focus {
+  color: #fff;
+  background-color: #d9891a;
+  border-color: #d9891a;
+}
+
+/* Shared plan cards — membership & lessor */
+.plan-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(12, 31, 134, 0.08);
+  padding: 28px 24px;
+  text-align: left;
+}
+
+.plan-card__cta {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.plan-card__title {
+  color: var(--brand-navy);
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.plan-card__price {
+  color: var(--brand-accent);
+  font-family: "Open Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.plan-card__description {
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.plan-card__block {
+  margin-top: 8px;
+}
+
+.plan-card__label {
+  color: #212529;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.plan-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.plan-card__list li {
+  color: #495057;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.plan-card__list--bullets li {
+  padding-left: 16px;
+  position: relative;
+}
+
+.plan-card__list--bullets li::before {
+  background: var(--brand-accent);
+  border-radius: 50%;
+  content: "";
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 7px;
+  width: 6px;
+}
+
+.plan-card__list--checks li {
+  align-items: flex-start;
+  display: flex;
+  gap: 8px;
+}
+
+.plan-card__list--checks .fa-check {
+  color: var(--brand-accent);
+  flex-shrink: 0;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.plan-card__package--divided {
+  border-top: 1px solid #eaeaea;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+.plan-card__package-text {
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.plan-card__annual {
+  color: var(--brand-navy);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.plan-card__fee-note {
+  color: var(--brand-accent);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.plan-card__price-alt {
+  color: var(--brand-navy);
+  font-size: 14px;
+  font-weight: 600;
+  margin: -4px 0 12px;
+}
+
+.plan-card--selected {
+  box-shadow: 0 4px 22px rgba(12, 110, 164, 0.22);
+  outline: 2px solid var(--brand-primary);
+}
+
+.plan-card--apply {
+  border: 1px solid #e8eef5;
+}
+
+/* Equal-height blog cards — keep Read More footer aligned */
+.blog__grid {
+  height: 100%;
+}
+
+.blog__grid .card__image {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog__grid .card__image-body {
+  flex: 1 1 auto;
+}
+
+.blog__grid .card__image-body h6 {
+  min-height: 3em;
+}
+
+.blog__grid .card__image-body p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog__grid .card__image-footer {
+  margin-top: auto;
+}
+
+/* Rounded USA flag in navbar */
+.navbar-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 10px;
+  margin-right: 8px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.navbar-flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.navbar:not(.navbar-transparent) .navbar-flag,
+.navbar-transparent.fixed-top .navbar-flag {
+  box-shadow: 0 0 0 2px rgba(12, 31, 134, 0.12);
+}
+
+@media (max-width: 1199.98px) {
+  .navbar-flag {
+    margin-right: auto;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive navbar
+   The hero navbar is transparent with white links. Below the lg breakpoint the
+   menu collapses, so it needs a solid panel + dark links to stay readable, and
+   when scrolled (white bar) the links/logo must switch to the dark versions.
+--------------------------------------------------------------------------- */
+
+/* Scrolled state: transparent bar becomes solid white, so darken content */
+.navbar-transparent.fixed-top .navbar-nav .nav-item .nav-link {
+  color: #111;
+}
+.navbar-transparent.fixed-top .navbar-brand img:first-child {
+  display: none;
+}
+.navbar-transparent.fixed-top .navbar-brand img:last-child {
+  display: block;
+}
+
+@media (max-width: 1199.98px) {
+  /* Collapsed menu becomes a solid, readable panel */
+  .navbar-expand-xl > .container {
+    flex-wrap: wrap;
+  }
+
+  .navbar-expand-xl .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-expand-xl .navbar-collapse {
+    display: none !important;
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .navbar-expand-xl .navbar-collapse.show {
+    display: block !important;
+  }
+
+  .navbar-expand-xl .navbar-nav {
+    flex-direction: column;
+  }
+
+  .navbar .navbar-collapse {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(12, 31, 134, 0.12);
+    margin-top: 12px;
+    padding: 6px 18px 16px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+  }
+
+  /* Force dark links regardless of transparent/soft variant */
+  .navbar-transparent .navbar-nav .nav-item .nav-link,
+  .navbar-soft .navbar-nav .nav-item .nav-link {
+    color: #111;
+  }
+
+  /* "Add listing" button sits on its own row, aligned left */
+  .navbar-nav .btn-primary {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  /* Hamburger contrast against the dark hero overlay */
+  .navbar-soft .navbar-nav .nav-item .nav-link {
+    padding: 0.75rem 0;
+  }
+
+  .navbar-transparent .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+  .navbar-transparent:not(.fixed-top) .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-expand-xl > .container {
+    flex-wrap: nowrap;
+  }
+
+  .navbar-expand-xl .navbar-toggler {
+    display: none;
+  }
+
+  .navbar-expand-xl .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+
+  .navbar-expand-xl .navbar-nav {
+    flex-direction: row;
+  }
+
+  .navbar-soft .navbar-brand img {
+    width: 145px;
+  }
+
+  .navbar-soft .navbar-nav .nav-item {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
+  .navbar-soft .navbar-nav .nav-item .nav-link {
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Small-screen layout
+   Keep the hero headline clear of the navbar, stop sideways scrolling, and
+   fit the search form on a phone without hiding the Search button.
+--------------------------------------------------------------------------- */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Flex columns default to min-width:auto, so a long heading or select
+   stretches the row past the phone screen and the text gets clipped. */
+.row > [class*="col-"] {
+  min-width: 0;
+}
+
+img,
+video,
+iframe,
+svg {
+  max-width: 100%;
+}
+
+.swiper {
+  max-width: 100%;
+}
+
+.navbar > .container {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.navbar-brand {
+  min-width: 0;
+}
+
+.navbar-toggler {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1199.98px) {
+  .jumbotron {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .bg-theme-v5,
+  .bg-theme-overlay {
+    background-attachment: scroll !important;
+  }
+
+  .navbar-soft .navbar-brand img,
+  .navbar-transparent .navbar-brand img {
+    width: min(150px, 42vw);
+    height: auto;
+  }
+
+  .wrap__intro {
+    display: block;
+    height: auto;
+    width: 100%;
+    min-width: 0;
+    padding: 1.15rem 0 1.75rem;
+    overflow: visible;
+  }
+
+  .wrap__intro > .container {
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 100%;
+  }
+
+  /* Cancel the row's negative margin so the headline is not clipped. */
+  .wrap__intro .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .wrap__intro [class*="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .wrap__intro-heading,
+  .wrap__intro h1,
+  .wrap__intro p {
+    max-width: 100%;
+  }
+
+  .wrap__intro h1 {
+    font-size: clamp(1.55rem, 7vw, 2.35rem);
+    line-height: 1.2;
+    margin-bottom: 0.7rem;
+    overflow-wrap: break-word;
+  }
+
+  .wrap__intro p {
+    font-size: 1rem;
+    line-height: 1.55;
+    margin-bottom: 1.1rem;
+  }
+
+  .wrap__intro .bg__overlay-black.p-4 {
+    padding: 0.85rem !important;
+  }
+
+  .section__breadcrumb h2,
+  .section__breadcrumb .list-inline,
+  .card__image-content h6,
+  .footer-title,
+  .widget__footer p {
+    overflow-wrap: anywhere;
+  }
+}
+
+.search__property {
+  position: relative;
+  z-index: 2;
+}
+
+.search__property .nav-tabs-02 {
+  border: 0;
+}
+
+.search__property .nav-tabs-02 .nav-link {
+  background: transparent;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.search__property .nav-tabs-02 .nav-link.active {
+  background: #0c6ea4;
+  color: #fff;
+}
+
+.search__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 100%;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.search__fields .select_option {
+  width: 100%;
+  max-width: 100%;
+  height: 48px;
+  min-width: 0;
+  border: 0;
+  border-bottom: 1px solid #e9ecef;
+  border-radius: 0;
+  padding: 0 0.85rem;
+  background-color: #fff;
+  color: #212529;
+  font-size: 14px;
+}
+
+.search__fields .search__submit {
+  grid-column: 1 / -1;
+  height: 48px;
+  border: 0;
+  border-radius: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.search__fields .search__submit .fa {
+  margin-right: 0.35rem;
+}
+
+@media (min-width: 992px) {
+  .search__fields {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .search__fields .select_option,
+  .search__fields .search__submit {
+    height: 60px;
+  }
+
+  .search__fields .search__submit {
+    grid-column: auto;
+  }
+
+  .search__fields .select_option {
+    border-bottom: 0;
+    border-left: 1px solid #e9ecef;
+  }
+
+  .search__fields .select_option:first-child {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .search__fields .select_option:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .search__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .search__fields .select_option,
+  .search__fields .select_option:nth-child(5) {
+    grid-column: auto;
+  }
+}
+
+.pm-kicker {
+  color: var(--brand-primary);
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+}
+
+.pm-benefits {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.pm-benefits li {
+  color: #495057;
+  line-height: 1.6;
+  margin-bottom: 0.85rem;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.pm-benefits li::before {
+  background: var(--brand-accent);
+  border-radius: 50%;
+  content: "";
+  height: 7px;
+  left: 0;
+  position: absolute;
+  top: 0.55rem;
+  width: 7px;
+}
+
+.pm-benefits strong {
+  color: var(--brand-navy);
+}
+
+.title__leading h2,
+.title__head h2,
+.section__breadcrumb h2 {
+  overflow-wrap: break-word;
+}

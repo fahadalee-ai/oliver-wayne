@@ -1,0 +1,233 @@
+import { img } from "../utils/asset";
+export const defaultPropertyDetail = {
+  description: [
+    "This beautifully designed modern villa offers spacious living areas, premium finishes, and abundant natural light throughout. Located in a highly desirable neighborhood, it provides the perfect balance of comfort, style, and convenience.",
+    "The open-concept layout features a contemporary kitchen with high-end appliances, elegant living and dining spaces, generously sized bedrooms, and luxurious bathrooms. Large windows and a private outdoor area create an inviting atmosphere for both everyday living and entertaining.",
+    "Ideally situated near top-rated schools, shopping centers, restaurants, parks, and major transportation routes, this property is an excellent choice for families, professionals, or investors seeking exceptional value in a prime location.",
+  ],
+
+  detailLeft: [
+    { label: "Property ID", value: "PR-1025" },
+    { label: "Price", value: "$825,000" },
+    { label: "Property Size", value: "3,450 sq ft" },
+    { label: "Bedrooms", value: "5" },
+    { label: "Bathrooms", value: "4" },
+  ],
+
+  detailRight: [
+    { label: "Garage", value: "2 Cars" },
+    { label: "Garage Size", value: "520 sq ft" },
+    { label: "Year Built", value: "2022" },
+    { label: "Property Type", value: "Villa" },
+    { label: "Property Status", value: "For Sale" },
+  ],
+
+  additionalLeft: [
+    { label: "Lot Size", value: "6,500 sq ft" },
+    { label: "Kitchen", value: "1 Modern Kitchen" },
+    { label: "Living Rooms", value: "2" },
+    { label: "Dining Rooms", value: "1" },
+    { label: "Flooring", value: "Hardwood" },
+  ],
+
+  additionalRight: [
+    { label: "Heating", value: "Central Heating" },
+    { label: "Cooling", value: "Central Air Conditioning" },
+    { label: "Parking", value: "2 Spaces" },
+    { label: "Furnished", value: "No" },
+    { label: "Available", value: "Immediately" },
+  ],
+
+  features: [
+    "Air Conditioning",
+    "Central Heating",
+    "Swimming Pool",
+    "Private Garden",
+    "Modern Kitchen",
+    "Walk-in Closet",
+    "Smart Home System",
+    "High-Speed Wi-Fi",
+    "Security System",
+    "Covered Parking",
+  ],
+
+  galleries: [
+    img("prop-1.jpg"),
+    img("prop-2.jpg"),
+    img("prop-3.jpg"),
+    img("prop-4.jpg"),
+    img("prop-5.jpg"),
+    img("prop-6.jpg"),
+  ],
+
+  agentPhone: "+1 (212) 555-0101",
+  agentEmail: "James@OliverWayne.Com",
+
+  floorPlans: [
+    {
+      id: "ground",
+      title: "Ground Floor",
+      size: "1,850 sq ft",
+      image: img("floorplan.jpg"),
+      text: "Features an open-plan living area, dining room, modern kitchen, guest bedroom, and direct access to the garden and outdoor entertainment area.",
+    },
+    {
+      id: "first",
+      title: "First Floor",
+      size: "1,600 sq ft",
+      image: img("floorplan2.jpg"),
+      text: "Includes the master suite, additional bedrooms, luxury bathrooms, and a spacious family lounge with balcony access.",
+    },
+    {
+      id: "garage",
+      title: "Garage",
+      size: "520 sq ft",
+      image: img("floorplan3.jpg"),
+      text: "A secure two-car garage with additional storage space and direct access to the main residence.",
+    },
+  ],
+
+  locationMap: {
+    mapEmbed:
+      "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d50446.89789906054!2d-122.41577600000001!3d37.791654!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd473843de08ff793!2sBetter%20Property%20Management!5e0!3m2!1sen!2sus!4v1591226304089!5m2!1sen!2sus",
+    streetEmbed:
+      "https://www.google.com/maps/embed?pb=!4v1553797194458!6m8!1m7!1sR4K_5Z2wRHTk9el8KLTh9Q!2m2!1d36.82551718071267!2d-76.34864590837246!3f305.15097!4f0!5f0.7820865974627469",
+  },
+
+  nearby: [
+    {
+      id: "education",
+      title: "Education",
+      icon: "fa-graduation-cap",
+      places: [
+        { name: "Greenwood Elementary School", distance: "1.2 km" },
+        { name: "City International College", distance: "2.8 km" },
+        { name: "Westside High School", distance: "3.4 km" },
+      ],
+    },
+    {
+      id: "health",
+      title: "Health & Medical",
+      icon: "fa-hospital-o",
+      places: [
+        { name: "City Medical Center", distance: "1.8 km" },
+        { name: "CarePlus Pharmacy", distance: "850 m" },
+        { name: "Family Health Clinic", distance: "2.1 km" },
+      ],
+    },
+  ],
+
+  attachments: [
+    {
+      id: 1,
+      label: "Property Brochure (PDF)",
+      icon: "fa-file-pdf-o",
+      href: "javascript:void(0)",
+    },
+    {
+      id: 2,
+      label: "Floor Plan (PDF)",
+      icon: "fa-file-pdf-o",
+      href: "javascript:void(0)",
+    },
+  ],
+};
+
+export const propertyListings = [
+  {
+    id: 1,
+    title: "Modern Family Villa",
+    type: "Villa",
+    location: "Beverly Hills, California",
+    price: "$825,000",
+    image: img("prop-1.jpg"),
+    agentName: "James Anderson",
+    agentImage: img("agent1.jpg"),
+    baths: 4,
+    beds: 5,
+    rooms: 9,
+    area: "3,450 sq ft",
+    ribbon: "Featured",
+    status: "For Sale",
+  },
+  {
+    id: 2,
+    title: "Luxury Downtown Apartment",
+    type: "Apartment",
+    location: "Manhattan, New York",
+    price: "$2,950 / month",
+    image: img("prop-2.jpg"),
+    agentName: "Emily Johnson",
+    agentImage: img("agent2.jpg"),
+    baths: 2,
+    beds: 3,
+    rooms: 5,
+    area: "1,650 sq ft",
+    ribbon: "Featured",
+    status: "For Rent",
+  },
+  {
+    id: 3,
+    title: "Contemporary Townhouse",
+    type: "Townhouse",
+    location: "Austin, Texas",
+    price: "$485,000",
+    image: img("prop-3.jpg"),
+    agentName: "Michael Carter",
+    agentImage: img("agent3.jpg"),
+    baths: 3,
+    beds: 4,
+    rooms: 7,
+    area: "2,350 sq ft",
+    ribbon: "Sold",
+    status: "For Sale",
+  },
+  {
+    id: 4,
+    title: "Executive Penthouse",
+    type: "Penthouse",
+    location: "Downtown Miami, Florida",
+    price: "$5,800 / month",
+    image: img("prop-4.jpg"),
+    agentName: "Daniel Thompson",
+    agentImage: img("agent4.jpg"),
+    baths: 3,
+    beds: 3,
+    rooms: 6,
+    area: "2,850 sq ft",
+    ribbon: "Featured",
+    status: "For Rent",
+  },
+  {
+    id: 5,
+    title: "Waterfront Luxury Villa",
+    type: "Villa",
+    location: "Malibu, California",
+    price: "$1,250,000",
+    image: img("prop-5.jpg"),
+    agentName: "James Anderson",
+    agentImage: img("agent1.jpg"),
+    baths: 5,
+    beds: 6,
+    rooms: 10,
+    area: "5,200 sq ft",
+    ribbon: "Featured",
+    status: "For Sale",
+  },
+  {
+    id: 6,
+    title: "Cozy Garden Apartment",
+    type: "Apartment",
+    location: "Seattle, Washington",
+    price: "$1,850 / month",
+    image: img("prop-6.jpg"),
+    agentName: "Emily Johnson",
+    agentImage: img("agent2.jpg"),
+    baths: 2,
+    beds: 2,
+    rooms: 4,
+    area: "1,150 sq ft",
+    ribbon: "New",
+    status: "For Rent",
+  },
+];

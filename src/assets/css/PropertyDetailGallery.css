@@ -1,0 +1,40 @@
+.listing-detail-gallery .item img {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+    transform: scale(0.85);
+    transition: all 0.3s ease-in-out;
+}
+
+.listing-detail-gallery .swiper-slide-active .item img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (max-width: 575px) {
+    .listing-detail-gallery .item img {
+        height: 200px;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .listing-detail-gallery .item img {
+        height: 250px;
+    }
+}
+
+/* arrows — similar to theme */
+.listing-detail-gallery .swiper-button-next,
+.listing-detail-gallery .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+}
+
+.listing-detail-gallery .swiper-button-next:after,
+.listing-detail-gallery .swiper-button-prev:after {
+    font-size: 16px;
+}
