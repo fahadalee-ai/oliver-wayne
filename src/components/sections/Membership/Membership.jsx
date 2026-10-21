@@ -1,6 +1,4 @@
 import { useState } from "react";
-import SectionTitle from "../SectionTitle/SectionTitle";
-import PlanCard from "../../Shared/PlanCard";
 import {
   membershipIntro,
   membershipScope,
@@ -8,6 +6,18 @@ import {
   membershipApplicationFields,
   membershipPaymentNote,
 } from "../../../data/memberships";
+import { img } from "../../../utils/asset";
+
+const planImages = {
+  1: {
+    file: "membership-silver.jpg",
+    alt: "Furnished room for comparing rental options",
+  },
+  2: {
+    file: "membership-gold.jpg",
+    alt: "Keys and a phone ready for a priority placement",
+  },
+};
 
 function Membership() {
   const [selectedId, setSelectedId] = useState(null);
@@ -15,85 +25,112 @@ function Membership() {
 
   return (
     <>
-      <section className="home__about">
+      <section className="member-page__intro">
         <div className="container">
-          <SectionTitle
-            align="center"
-            col={8}
-            title={membershipIntro.title}
-            subtitle={membershipIntro.subtitle}
-          />
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="title__leading">
-                <h2 className="text-capitalize">{membershipScope.title}</h2>
-                {membershipScope.paragraphs.map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-              </div>
+          <div className="member-page__split">
+            <div className="member-page__prose">
+              <h2>{membershipIntro.title}</h2>
+              <p>{membershipIntro.subtitle}</p>
             </div>
+            <figure className="member-page__figure">
+              <img
+                src={img("membership-hero.jpg")}
+                alt="Shipyard workers walking toward nearby lodging at sunset"
+              />
+            </figure>
           </div>
         </div>
       </section>
 
-      <section className="home__about bg-light pt-5">
+      <section className="member-page__scope">
         <div className="container">
-          <div className="row justify-content-center">
-            {membershipPlans.map((plan) => (
-              <div className="col-lg-5 col-md-6 mb-4" key={plan.id}>
-                <PlanCard
-                  variant="membership"
-                  {...plan}
-                  selected={selectedId === plan.id}
-                  onSelect={() => setSelectedId(plan.id)}
-                />
-              </div>
-            ))}
+          <div className="member-page__split member-page__split--start">
+            <div className="member-page__prose">
+              <h2>{membershipScope.title}</h2>
+              {membershipScope.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <figure className="member-page__figure">
+              <img
+                src={img("membership-scope.jpg")}
+                alt="Shipyard tradespeople reviewing plans beside a steel hull"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="member-page__plans" aria-label="Membership plans">
+        <div className="container">
+          <div className="member-page__plan-grid">
+            {membershipPlans.map((plan) => {
+              const photo = planImages[plan.id];
+              const selected = selectedId === plan.id;
+              return (
+                <article
+                  className={`member-card${selected ? " member-card--selected" : ""}`}
+                  key={plan.id}
+                >
+                  {photo && <img src={img(photo.file)} alt={photo.alt} />}
+                  <div className="member-card__body">
+                    <h3>{plan.title}</h3>
+                    {plan.price && <p className="member-card__price">{plan.price}</p>}
+                    {plan.priceAlt && <p className="member-card__alt">{plan.priceAlt}</p>}
+                    {plan.description && <p>{plan.description}</p>}
+                    {plan.applicationItems?.length > 0 && (
+                      <div>
+                        <h4>Application includes:</h4>
+                        <ul>
+                          {plan.applicationItems.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {plan.benefits?.length > 0 && (
+                      <div>
+                        <h4>Benefits:</h4>
+                        <ul className="member-card__checks">
+                          {plan.benefits.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    <button
+                      type="button"
+                      className={`btn ${selected ? "btn-primary" : "btn-outline-primary"}`}
+                      aria-pressed={selected}
+                      onClick={() => setSelectedId(plan.id)}
+                    >
+                      {selected ? "Selected" : "Select this plan"}
+                    </button>
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
           {selectedPlan && (
-            <div className="row justify-content-center">
-              <div className="col-lg-10">
-                <div className="plan-card plan-card--apply mt-2 mb-4">
-                  <h4 className="plan-card__title">
-                    Apply for {selectedPlan.title}
-                  </h4>
-                  <p className="plan-card__description">
-                    Review the required details below, then continue your
-                    application for this plan.
-                  </p>
-
-                  <div className="plan-card__block">
-                    <h6 className="plan-card__label">
-                      Information you will provide:
-                    </h6>
-                    <ul className="plan-card__list plan-card__list--bullets">
-                      {membershipApplicationFields.map((field) => (
-                        <li key={field}>{field}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="plan-card__block">
-                    <h6 className="plan-card__label">Payment:</h6>
-                    <p className="plan-card__description mb-0">
-                      {selectedPlan.isPaid
-                        ? membershipPaymentNote.paid
-                        : membershipPaymentNote.free}
-                    </p>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="btn btn-primary text-capitalize mt-3"
-                    onClick={() =>
-                      window.location.assign("mailto:membership@ollywayne.com")
-                    }
-                  >
-                    Continue application
-                  </button>
-                </div>
-              </div>
+            <div className="member-apply" aria-live="polite">
+              <h3>Apply for {selectedPlan.title}</h3>
+              <p>
+                Review the required details below, then continue your application for this plan.
+              </p>
+              <h4>Information you will provide:</h4>
+              <ul>
+                {membershipApplicationFields.map((field) => (
+                  <li key={field}>{field}</li>
+                ))}
+              </ul>
+              <h4>Payment:</h4>
+              <p>
+                {selectedPlan.isPaid ? membershipPaymentNote.paid : membershipPaymentNote.free}
+              </p>
+              <a className="btn btn-primary" href="mailto:membership@ollywayne.com">
+                Continue application
+              </a>
             </div>
           )}
         </div>

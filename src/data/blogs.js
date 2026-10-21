@@ -28,7 +28,7 @@ export const blogs = [
     title: "How to Choose Temporary Lodging Near Your Job Site",
     excerpt:
       "A practical checklist for critical workers: distance to the gate, parking, noise, price, and stay length.",
-    image: img("blog1.jpg"),
+    image: img("blog-jobsite.jpg"),
     badge: "Lodging Tips",
     authorName: "James Anderson",
     authorImage: img("agent1.jpg"),
@@ -46,7 +46,7 @@ export const blogs = [
     title: "Why Critical Infrastructure Workers and Contractors Need Better Housing Options",
     excerpt:
       "Essential workers keep the country running—temporary lodging should match the reliability of the work they do.",
-    image: img("blog2.jpg"),
+    image: img("blog-workforce.jpg"),
     badge: "Workforce Housing",
     authorName: "Emily Johnson",
     authorImage: img("agent2.jpg"),
@@ -64,7 +64,7 @@ export const blogs = [
     title: "Shipbuilding Travel Housing: What to Look For",
     excerpt:
       "Guidance for members working near Defense Industrial Base and shipyard locations along the Gulf Coast.",
-    image: img("blog3.jpg"),
+    image: img("blog-shipyard.jpg"),
     badge: "Shipbuilding",
     authorName: "Michael Carter",
     authorImage: img("agent3.jpg"),
@@ -82,7 +82,7 @@ export const blogs = [
     title: "Hotels, Apartments, Rooms, or RV Parking?",
     excerpt:
       "Compare temporary lodging types so you pick the stay that matches your assignment and lifestyle.",
-    image: img("blog4.jpg"),
+    image: img("blog-types.jpg"),
     badge: "Property Types",
     authorName: "Daniel Thompson",
     authorImage: img("agent4.jpg"),
@@ -100,7 +100,7 @@ export const blogs = [
     title: "Gulf Coast Locations for Temporary Worker Lodging",
     excerpt:
       "Why Pascagoula, Gautier, Ocean Springs, Biloxi, Gulfport, and Mobile matter for traveling crews.",
-    image: img("blog5.jpg"),
+    image: img("blog-gulf.jpg"),
     badge: "Locations",
     authorName: "James Anderson",
     authorImage: img("agent1.jpg"),
@@ -118,7 +118,7 @@ export const blogs = [
     title: "What Makes a Lodging Listing Trustworthy",
     excerpt:
       "Price alone is not enough—cleanliness, safety, noise, and parking should be part of every booking decision.",
-    image: img("blog6.jpg"),
+    image: img("blog-standards.jpg"),
     badge: "Standards",
     authorName: "Emily Johnson",
     authorImage: img("agent2.jpg"),
@@ -136,7 +136,7 @@ export const blogs = [
     title: "Membership Benefits for Temporary Lodging Seekers",
     excerpt:
       "How Silver and Gold membership help Essential Critical Infrastructure workers and contractors find lodging with more confidence.",
-    image: img("blog7.jpg"),
+    image: img("blog-membership.jpg"),
     badge: "Membership",
     authorName: "Michael Carter",
     authorImage: img("agent3.jpg"),
@@ -154,7 +154,7 @@ export const blogs = [
     title: "Tips for Lessors Listing Temporary Worker Housing",
     excerpt:
       "What property owners should highlight to attract vetted Essential Critical Infrastructure tenants.",
-    image: img("blog8.jpg"),
+    image: img("blog-lessors.jpg"),
     badge: "For Lessors",
     authorName: "Daniel Thompson",
     authorImage: img("agent4.jpg"),

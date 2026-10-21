@@ -13,25 +13,25 @@ export const recentNews = [
   {
     id: 1,
     title: "How to Choose Temporary Lodging Near Your Job Site",
-    image: img("blog1.jpg"),
+    image: img("blog-jobsite.jpg"),
     date: "July 15, 2026",
   },
   {
     id: 2,
     title: "Why Critical Infrastructure Workers and Contractors Need Better Housing Options",
-    image: img("blog2.jpg"),
+    image: img("blog-workforce.jpg"),
     date: "July 12, 2026",
   },
   {
     id: 3,
     title: "Shipbuilding Travel Housing: What to Look For",
-    image: img("blog3.jpg"),
+    image: img("blog-shipyard.jpg"),
     date: "July 8, 2026",
   },
   {
     id: 4,
     title: "Hotels, Apartments, Rooms, or RV Parking?",
-    image: img("blog4.jpg"),
+    image: img("blog-types.jpg"),
     date: "July 2, 2026",
   },
 ];

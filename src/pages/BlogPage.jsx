@@ -27,44 +27,33 @@ function BlogPage() {
   return (
     <>
       <PageBanner
-        title="blog"
-        items={[{ label: "blog Listing" }]}
-        image={img("aboutback.jpg")}
+        title="Blog"
+        items={[{ label: "Blog" }]}
+        image={img("blog-gulf.jpg")}
       />
-      <section>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8">
-              {filtering && (
-                <p>
-                  {results.length} article{results.length === 1 ? "" : "s"}
-                  {category ? ` in ${category}` : ""}
-                  {tag ? ` tagged ${tag}` : ""}
-                  {query ? ` matching “${params.get("q").trim()}”` : ""}.{" "}
-                  <button
-                    type="button"
-                    className="btn btn-link p-0"
-                    onClick={() => setParams({})}
-                  >
-                    Clear
-                  </button>
-                </p>
-              )}
-              {results.length === 0 && (
-                <p>No articles match this search.</p>
-              )}
-              <div className="row">
-                {results.map((blog) => (
-                  <div className="col-md-6 col-lg-6 mb-4 d-flex" key={blog.id}>
-                    <BlogCard {...blog} />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <BlogSidebar />
+      <section className="blog-page">
+        <div className="container blog-page__layout">
+          <div>
+            {filtering && (
+              <p className="blog-page__status">
+                {results.length} article{results.length === 1 ? "" : "s"}
+                {category ? ` in ${category}` : ""}
+                {tag ? ` tagged ${tag}` : ""}
+                {query ? ` matching “${params.get("q").trim()}”` : ""}.{" "}
+                <button type="button" onClick={() => setParams({})}>
+                  Clear
+                </button>
+              </p>
+            )}
+            {!filtering && results[0] && <BlogCard {...results[0]} layout="feature" />}
+            {results.length === 0 && <p className="blog-page__empty">No articles match this search.</p>}
+            <div className="blog-page__grid">
+              {(filtering ? results : results.slice(1)).map((blog) => (
+                <BlogCard {...blog} key={blog.id} />
+              ))}
             </div>
           </div>
+          <BlogSidebar />
         </div>
       </section>
     </>

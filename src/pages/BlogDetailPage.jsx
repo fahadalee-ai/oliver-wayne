@@ -26,20 +26,14 @@ function BlogDetailPage() {
   return (
     <>
       <PageBanner
-        title="blog"
-        items={[{ label: "blogs", to: "/blogs" }, { label: blog.title }]}
-        image={img("aboutback.jpg")}
+        title="Blog"
+        items={[{ label: "Blog", to: "/blogs" }, { label: blog.title }]}
+        image={img("blog-gulf.jpg")}
       />
-      <section>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8">
-              <BlogDetail {...post} />
-            </div>
-            <div className="col-lg-4">
-              <BlogSidebar />
-            </div>
-          </div>
+      <section className="blog-page">
+        <div className="container blog-page__layout">
+          <BlogDetail {...post} />
+          <BlogSidebar />
         </div>
       </section>
     </>
