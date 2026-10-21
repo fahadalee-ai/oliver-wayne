@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function BlogDetail({
   title,
   image,
@@ -9,6 +11,8 @@ function BlogDetail({
   quote,
   tags = [],
   authorBio,
+  prev,
+  next,
 }) {
   return (
     <div className="single__blog-detail">
@@ -21,16 +25,17 @@ function BlogDetail({
             </figure>
           </li>
           <li className="list-inline-item">
-            <span>by </span>
-            <a href="javascript:void(0)">{authorName},</a>
+            <span>by {authorName}</span>
           </li>
           <li className="list-inline-item">
             <span className="text-dark text-capitalize ml-1">{date}</span>
           </li>
-          <li className="list-inline-item">
-            <span className="text-dark text-capitalize ml-1">in </span>
-            <a href="javascript:void(0)">{category}</a>
-          </li>
+          {category && (
+            <li className="list-inline-item">
+              <span className="text-dark text-capitalize ml-1">in </span>
+              <Link to={`/blogs?category=${encodeURIComponent(category)}`}>{category}</Link>
+            </li>
+          )}
         </ul>
       </div>
       <figure>
@@ -47,15 +52,17 @@ function BlogDetail({
           <cite>{quote.cite}</cite>
         </blockquote>
       )}
-      <div className="blog__tags mb-4">
-        <ul className="list-inline">
-          {tags.map((tag) => (
-            <li className="list-inline-item" key={tag}>
-              <a href="javascript:void(0)">#{tag}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {tags.length > 0 && (
+        <div className="blog__tags mb-4">
+          <ul className="list-inline">
+            {tags.map((tag) => (
+              <li className="list-inline-item" key={tag}>
+                <Link to={`/blogs?tag=${encodeURIComponent(tag)}`}>#{tag}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div className="wrap__profile">
         <div className="wrap__profile-author">
           <figure>
@@ -67,56 +74,31 @@ function BlogDetail({
           </figure>
           <div className="wrap__profile-author-detail">
             <div className="wrap__profile-author-detail-name">author</div>
-            <h5>{authorName}</h5>
+            <h2 className="h5">{authorName}</h2>
             <p>{authorBio}</p>
-            <ul className="list-inline">
-              <li className="list-inline-item">
-                <a href="javascript:void(0)" className="btn btn-social btn-social-o facebook ">
-                  <i className="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href="javascript:void(0)" className="btn btn-social btn-social-o twitter ">
-                  <i className="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href="javascript:void(0)" className="btn btn-social btn-social-o instagram ">
-                  <i className="fa fa-instagram"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href="javascript:void(0)" className="btn btn-social btn-social-o telegram ">
-                  <i className="fa fa-telegram"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href="javascript:void(0)" className="btn btn-social btn-social-o linkedin ">
-                  <i className="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
       <div className="row">
         <div className="col-md-6">
-          <div className="single_navigation-prev">
-            <a href="javascript:void(0)">
-              <span>previous post</span>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem,
-              similique.
-            </a>
-          </div>
+          {prev && (
+            <div className="single_navigation-prev">
+              <Link to={`/blog/${prev.id}`}>
+                <span>previous post</span>
+                {prev.title}
+              </Link>
+            </div>
+          )}
         </div>
         <div className="col-md-6">
-          <div className="single_navigation-next text-left text-md-right">
-            <a href="javascript:void(0)">
-              <span>next post</span>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Perferendis, nesciunt.
-            </a>
-          </div>
+          {next && (
+            <div className="single_navigation-next text-left text-md-right">
+              <Link to={`/blog/${next.id}`}>
+                <span>next post</span>
+                {next.title}
+              </Link>
+            </div>
+          )}
         </div>
       </div>
       <div className="clearfix"></div>

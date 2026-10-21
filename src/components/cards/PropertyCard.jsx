@@ -57,7 +57,7 @@ function PropertyCard({ id, title, price, image, baths, beds, rooms, area, badge
         return <Link to={`/property/${id}`}>{content}</Link>;
     }
 
-    return <a href="javascript:void(0)">{content}</a>;
+    return content;
 }
 
 export default PropertyCard;

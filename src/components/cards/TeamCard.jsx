@@ -1,6 +1,20 @@
 import { Link } from "react-router-dom";
 
-function TeamCard({ id, name, role, image, greeting, bio }) {
+function TeamCard({ id, name, role, image, greeting, bio, layout = "hover" }) {
+    if (layout === "plain") {
+        return (
+            <article className="about-team-card">
+                <img alt={name} className="about-team-card__photo" src={image} />
+                <div>
+                    <h3>{name}</h3>
+                    <p className="about-team-card__role">{role}</p>
+                    <p>{bio}</p>
+                    <Link to={`/agent/${id}`}>Agent profile</Link>
+                </div>
+            </article>
+        );
+    }
+
     return (
         <div className="wrap-agent">
             <div className="team-member">
@@ -17,13 +31,13 @@ function TeamCard({ id, name, role, image, greeting, bio }) {
                     </div>
                     <ul className="list-inline s-link mb-0">
                         <li className="list-inline-item">
-                            <a href="javascript:void(0)"><i className="fa fa-facebook"></i></a>
+                            <span aria-hidden="true"><i className="fa fa-facebook"></i></span>
                         </li>
                         <li className="list-inline-item">
-                            <a href="javascript:void(0)"><i className="fa fa-twitter"></i></a>
+                            <span aria-hidden="true"><i className="fa fa-twitter"></i></span>
                         </li>
                         <li className="list-inline-item">
-                            <a href="javascript:void(0)"><i className="fa fa-google-plus"></i></a>
+                            <span aria-hidden="true"><i className="fa fa-google-plus"></i></span>
                         </li>
                     </ul>
                 </div>

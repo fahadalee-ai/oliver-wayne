@@ -16,20 +16,13 @@ function AboutPage() {
         image={img("aboutback.jpg")}
       />
       <AboutContent />
-      <section className="home__about pb-0">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <AboutMission />
-              <AboutStory />
-              <AboutSectors />
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutMission />
+      <AboutStory />
+      <AboutSectors />
       <Partners />
       <OurTeam
         bgLight
+        cardLayout="plain"
         titleAlign="center"
         title="Our Team"
         subtitle="Meet the experts behind your real estate success"

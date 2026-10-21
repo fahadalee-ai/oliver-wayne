@@ -87,8 +87,8 @@ function Navbar({ variant = "hero" }) {
 
                         <ul className="navbar-nav ">
                             <li>
-                                <a href="javascript:void(0)" className="btn btn-primary text-capitalize" onClick={() => setMenuOpen(false)}>
-                                    <i className="fa fa-plus-circle mr-1"></i> add listing</a>
+                                <Link className="btn btn-primary text-capitalize" to="/add-listing" onClick={() => setMenuOpen(false)}>
+                                    <i className="fa fa-plus-circle mr-1"></i> add listing</Link>
                             </li>
                         </ul>
 

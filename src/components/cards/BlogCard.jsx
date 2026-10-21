@@ -26,9 +26,7 @@ function BlogCard({ title, excerpt, image, badge, authorName, authorImage, id })
                     </figure>
                     <ul className="list-inline my-auto">
                         <li className="list-inline-item">
-                            <a href="javascript:void(0)">
-                                {authorName}
-                            </a>
+                            <span>{authorName}</span>
 
                         </li>
                     </ul>

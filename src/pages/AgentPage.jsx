@@ -1,45 +1,60 @@
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import PageBanner from "../components/layout/StickyHeader/PageBanner";
-import ProfileCard from "../components/cards/ProfileCard";
 import AgentFilter from "../components/Agent/AgentFilter";
-import CategoryList from "../components/Shared/CategoryList";
 import { agents } from "../data/agents";
-import { propertyCategories } from "../data/filters";
-import Attachment from "../components/Attachment/Attachment";
-import { defaultAttachments } from "../data/attachments";
 import { img } from "../utils/asset";
 
 function AgentPage() {
-    return (
-        <>
-            <PageBanner
-                title="agents property"
-                items={[
-                    { label: "agent Listing" },
-                ]}
-                image={img("aboutback.jpg")}
-            />
-            <section className="profile__agents">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-4">
-                            <AgentFilter />
-                            <CategoryList categories={propertyCategories} />
-                            <Attachment attachments={defaultAttachments} />
-                        </div>
-                        <div className="col-lg-8">
-                            <div className="row">
-                                {agents.map((agent) => (
-                                    <div className="col-lg-6" key={agent.id}>
-                                        <ProfileCard variant="agent" {...agent} />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+  const [query, setQuery] = useState("");
+  const needle = query.trim().toLowerCase();
+  const results = useMemo(
+    () =>
+      agents.filter((agent) => {
+        if (!needle) return true;
+        return `${agent.name} ${agent.role}`.toLowerCase().includes(needle);
+      }),
+    [needle]
+  );
+
+  return (
+    <>
+      <PageBanner
+        title="Agents"
+        items={[{ label: "Agents" }]}
+        image={img("agents-banner.jpg")}
+      />
+      <section className="agent-directory">
+        <div className="container">
+          <AgentFilter query={query} onQueryChange={setQuery} />
+          {results.length === 0 && (
+            <p className="agent-directory__empty">No agents match that name.</p>
+          )}
+          <div className="agent-directory__grid">
+            {results.map((agent) => (
+              <article className="agent-card" key={agent.id}>
+                <Link to={`/agent/${agent.id}`} className="agent-card__photo">
+                  <img src={agent.image} alt={agent.name} />
+                </Link>
+                <div className="agent-card__body">
+                  <p className="agent-card__count">{agent.listingsCount}</p>
+                  <h2>
+                    <Link to={`/agent/${agent.id}`}>{agent.name}</Link>
+                  </h2>
+                  <p className="agent-card__role">{agent.role}</p>
+                  <a href={`tel:${agent.mobile}`}>{agent.mobile}</a>
+                  <a href={`mailto:${agent.email}`}>{agent.email}</a>
+                  <Link className="agent-card__profile" to={`/agent/${agent.id}`}>
+                    View profile
+                  </Link>
                 </div>
-            </section>
-        </>
-    );
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }
 
-export default AgentPage
+export default AgentPage;

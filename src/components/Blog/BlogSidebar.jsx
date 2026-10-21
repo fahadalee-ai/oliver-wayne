@@ -1,6 +1,26 @@
-import { blogCategories, recentNews, blogTags, } from "../../data/blogSidebar";
+import { useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { blogs } from "../../data/blogs";
+import { recentNews, blogTags } from "../../data/blogSidebar";
 
 function BlogSidebar() {
+    const navigate = useNavigate();
+    const [params] = useSearchParams();
+    const paramQuery = params.get("q") || "";
+    const [query, setQuery] = useState(paramQuery);
+    const [syncedQuery, setSyncedQuery] = useState(paramQuery);
+    if (syncedQuery !== paramQuery) {
+        setSyncedQuery(paramQuery);
+        setQuery(paramQuery);
+    }
+    const categories = [...new Set(blogs.map((blog) => blog.category))];
+
+    function onSearch(event) {
+        event.preventDefault();
+        const value = query.trim();
+        navigate(value ? `/blogs?q=${encodeURIComponent(value)}` : "/blogs");
+    }
+
     return (
         <div className="sticky-top">
             <aside>
@@ -9,18 +29,22 @@ function BlogSidebar() {
                         <h6 className="text-capitalize">search</h6>
                     </div>
                     <div className="widget__sidebar__body">
-                        <div className="input-group">
+                        <form className="input-group" onSubmit={onSearch}>
+                            <label className="sr-only" htmlFor="blog-search">Search articles</label>
                             <input
-                                type="text"
+                                id="blog-search"
+                                type="search"
                                 className="form-control"
                                 placeholder="Search article . . ."
+                                value={query}
+                                onChange={(event) => setQuery(event.target.value)}
                             />
                             <span className="input-group-btn">
-                                <button type="button" className="btn-search btn">
+                                <button type="submit" className="btn-search btn" aria-label="Search articles">
                                     <i className="fa fa-search"></i>
                                 </button>
                             </span>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </aside>
@@ -31,12 +55,17 @@ function BlogSidebar() {
                     </div>
                     <div className="widget__sidebar__body">
                         <ul className="list-unstyled">
-                            {blogCategories.map((cat) => (
-                                <li key={cat.id}>
-                                    <a href="javascript:void(0)" className="text-capitalize">
-                                        {cat.name}
-                                        <span className="badge badge-primary">{cat.count}</span>
-                                    </a>
+                            {categories.map((name) => (
+                                <li key={name}>
+                                    <Link
+                                        to={`/blogs?category=${encodeURIComponent(name)}`}
+                                        className="text-capitalize"
+                                    >
+                                        {name}
+                                        <span className="badge badge-primary">
+                                            {blogs.filter((blog) => blog.category === name).length}
+                                        </span>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -53,7 +82,9 @@ function BlogSidebar() {
                             <div className="widget__sidebar__body-img" key={item.id}>
                                 <img src={item.image} alt="" className="img-fluid" />
                                 <div className="widget__sidebar__body-heading">
-                                    <h6 className="text-capitalize">{item.title}</h6>
+                                    <h6 className="text-capitalize">
+                                        <Link to={`/blog/${item.id}`}>{item.title}</Link>
+                                    </h6>
                                 </div>
                                 <span className="badge badge-secondary p-1 text-capitalize mb-1">
                                     {item.date}
@@ -73,7 +104,7 @@ function BlogSidebar() {
                             <ul className="list-inline">
                                 {blogTags.map((tag) => (
                                     <li className="list-inline-item" key={tag}>
-                                        <a href="javascript:void(0)">#{tag}</a>
+                                        <Link to={`/blogs?tag=${encodeURIComponent(tag)}`}>#{tag}</Link>
                                     </li>
                                 ))}
                             </ul>

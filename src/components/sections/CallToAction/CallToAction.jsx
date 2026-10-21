@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function CallToAction() {
   return (
     <section className="cta-v1 py-5">
@@ -13,13 +15,13 @@ function CallToAction() {
             </p>
           </div>
           <div className="col-lg-3">
-            <a
-              href="javascript:void(0)"
+            <Link
+              to="/properties"
               className="btn btn-light text-uppercase "
             >
-              request a quote
+              browse properties
               <i className="fa fa-angle-right ml-3 arrow-btn "></i>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -21,7 +21,10 @@ import AgencyDetailPage from "./pages/AgencyDetailPage";
 import MembershipPage from "./pages/MembershipPage";
 import LessorPage from "./pages/LessorPage";
 import PropertyManagementPage from "./pages/PropertyManagementPage";
+import AddListingPage from "./pages/AddListingPage";
+import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import { ListingsProvider } from "./listings/ListingsContext";
 import ScrollToTop from "./components/ScrollToTop";
 import DocumentTitle from "./components/DocumentTitle";
 import { normalizePathname } from "./utils/normalizePathname";
@@ -60,6 +63,8 @@ function AppRoutes() {
           <Route path="/lessors" element={<LessorPage />} />
           <Route path="/property-management" element={<PropertyManagementPage />} />
           <Route path="/properties" element={<PropertyPage />} />
+          <Route path="/add-listing" element={<AddListingPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/property/:id" element={<PropertyDetailPage />} />
           <Route path="/blogs" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetailPage />} />
@@ -78,7 +83,9 @@ function AppRoutes() {
 function App() {
   return (
     <Router basename={routerBasename}>
-      <AppRoutes />
+      <ListingsProvider>
+        <AppRoutes />
+      </ListingsProvider>
     </Router>
   );
 }

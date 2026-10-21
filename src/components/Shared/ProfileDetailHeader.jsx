@@ -24,25 +24,25 @@ function ProfileDetailHeader({
       <div className="col-lg-12 cards mt-0">
         <div className="row">
           <div className="col-md-6 col-lg-6">
-            <a href="javascript:void(0)" className={imageClass}>
+            <div className={imageClass}>
               <img src={image} alt={name} className="img-fluid" />
               <div className="total__property-agent">{listingsCount}</div>
-            </a>
+            </div>
           </div>
           <div className="col-md-6 col-lg-6 my-auto">
             <div className={`profile__${prefix}-info`}>
               <h5 className="text-capitalize">
-                <a href="javascript:void(0)">{name}</a>
+                {name}
               </h5>
               <p className="text-capitalize mb-1">{subtitle}</p>
               <ul className="list-unstyled mt-2">
                 <li>
-                  <a href="javascript:void(0)" className="text-capitalize">
+                  <span className="text-capitalize">
                     <span>
                       <i className="fa fa-building"></i> office :
                     </span>{" "}
                     {office}
-                  </a>
+                  </span>
                 </li>
                 <li>
                   <a href={`tel:${mobile}`} className="text-capitalize">
@@ -53,12 +53,12 @@ function ProfileDetailHeader({
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)" className="text-capitalize">
+                  <span className="text-capitalize">
                     <span>
                       <i className="fa fa-fax"></i> fax :
                     </span>{" "}
                     {fax}
-                  </a>
+                  </span>
                 </li>
                 <li>
                   <a href={`mailto:${email}`} className="text-capitalize">

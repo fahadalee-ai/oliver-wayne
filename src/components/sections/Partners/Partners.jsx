@@ -13,15 +13,13 @@ function Partners() {
         />
         <div className="row">
           <div className="col-md-12">
-            <div className="projects__partner-logo">
-              <ul className="list-inline mb-0">
-                {partners.map((partner) => (
-                  <li className="list-inline-item" key={partner.id}>
-                    <img src={partner.image} alt="" className="img-fluid" />
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="about-partners__logos">
+              {partners.map((partner) => (
+                <li key={partner.id}>
+                  <img src={partner.image} alt="" />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

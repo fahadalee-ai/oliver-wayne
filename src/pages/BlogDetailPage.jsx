@@ -16,7 +16,13 @@ function BlogDetailPage() {
       </section>
     );
   }
-  const post = { ...defaultBlogDetail, ...blog };
+  const index = blogs.findIndex((item) => String(item.id) === id);
+  const post = {
+    ...defaultBlogDetail,
+    ...blog,
+    prev: index > 0 ? blogs[index - 1] : null,
+    next: index >= 0 && index < blogs.length - 1 ? blogs[index + 1] : null,
+  };
   return (
     <>
       <PageBanner

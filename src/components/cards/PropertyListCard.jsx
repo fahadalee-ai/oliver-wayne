@@ -61,9 +61,7 @@ function PropertyListCard({
                     </figure>
                     <ul className="list-inline my-auto">
                         <li className="list-inline-item ">
-                            <a href="javascript:void(0)">
-                                {agentName}
-                            </a>
+                            <span>{agentName}</span>
 
                         </li>
 
@@ -141,9 +139,7 @@ function PropertyListCard({
                         </figure>
                         <ul className="list-inline my-auto">
                             <li className="list-inline-item name">
-                                <a href="javascript:void(0)">
-                                    {agentName}
-                                </a>
+                                <span>{agentName}</span>
 
                             </li>
 

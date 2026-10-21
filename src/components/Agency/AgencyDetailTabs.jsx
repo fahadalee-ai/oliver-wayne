@@ -71,16 +71,13 @@ function AgencyDetailTabs({
                                 <p key={index}>{text}</p>
                             ))}
                             {!expanded && (
-                                <a
-                                    href="javascript:void(0)"
+                                    <button
+                                    type="button"
                                     className="show__more-button"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setExpanded(true);
-                                    }}
+                                    onClick={() => setExpanded(true)}
                                 >
                                     read more
-                                </a>
+                                </button>
                             )}
                         </div>
                     </div>
@@ -119,13 +116,13 @@ function AgencyDetailTabs({
                                     <p>{review.text}</p>
                                     {review.replies?.map((reply) => (
                                         <div className="media mt-4" key={reply.id}>
-                                            <a className="pr-3" href="javascript:void(0)">
+                                            <span className="pr-3">
                                                 <img
                                                     src={reply.image}
                                                     alt={reply.name}
                                                     className="img-fluid rounded-circle"
                                                 />
-                                            </a>
+                                            </span>
                                             <div className="media-body">
                                                 <h6 className="mt-0">{reply.name}</h6>
                                                 <span className="mb-3">{reply.date}</span>

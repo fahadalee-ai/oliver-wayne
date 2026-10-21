@@ -25,17 +25,14 @@ function PropertyDetailContent({
             {description.map((text, index) => (
               <p key={index}>{text}</p>
             ))}
-            {!expanded && (
-              <a
-                href="javascript:void(0)"
+            {!expanded && description.length > 1 && (
+              <button
+                type="button"
                 className="show__more-button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setExpanded(true);
-                }}
+                onClick={() => setExpanded(true)}
               >
                 read more
-              </a>
+              </button>
             )}
           </div>
         </div>
@@ -64,6 +61,8 @@ function PropertyDetailContent({
                 </ul>
               </div>
             </div>
+            {(additionalLeft.length > 0 || additionalRight.length > 0) && (
+            <>
             <h6 className="text-primary">Additional details</h6>
             <div className="row">
               <div className="col-md-6 col-lg-6">
@@ -85,10 +84,13 @@ function PropertyDetailContent({
                 </ul>
               </div>
             </div>
+            </>
+            )}
           </div>
         </div>
         <div className="clearfix"></div>
         {/* FEATURES */}
+        {features.length > 0 && (
         <div className="single__detail-features">
           <h5 className="text-capitalize detail-heading">features</h5>
           <ul className="list-unstyled icon-checkbox">
@@ -97,7 +99,8 @@ function PropertyDetailContent({
             ))}
           </ul>
         </div>
-        {/* FLOOR PLAN */}
+        )}
+        {floorPlans.length > 0 && (
         <div className="single__detail-features">
           <h5 className="text-capitalize detail-heading">floor plan</h5>
           <div className="floorplan" role="tablist">
@@ -106,19 +109,17 @@ function PropertyDetailContent({
               return (
                 <div className="card" key={plan.id}>
                   <div className="card-header" role="tab">
-                    <a
-                      href="javascript:void(0)"
-                      className={`text-capitalize ${isOpen ? "" : "collapsed"}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setOpenFloor(isOpen ? null : plan.id);
-                      }}
+                    <button
+                      type="button"
+                      className={`floorplan-toggle text-capitalize ${isOpen ? "" : "collapsed"}`}
+                      aria-expanded={isOpen}
+                      onClick={() => setOpenFloor(isOpen ? null : plan.id)}
                     >
                       {plan.title}{" "}
                       <span className="badge badge-light rounded p-1 ml-2">
                         {plan.size}
                       </span>
-                    </a>
+                    </button>
                   </div>
                   <div
                     className={`collapse ${isOpen ? "show" : ""}`}
@@ -140,7 +141,8 @@ function PropertyDetailContent({
             })}
           </div>
         </div>
-        {/* LOCATION */}
+        )}
+        {locationMap?.mapEmbed && (
         <div className="single__detail-features">
           <h5 className="text-capitalize detail-heading">location</h5>
           <ul className="nav nav-pills mb-3" role="tablist">
@@ -148,20 +150,24 @@ function PropertyDetailContent({
               <button
                 type="button"
                 className={`nav-link btn btn-block ${locationTab === "map" ? "active" : ""}`}
+                aria-label="Map"
                 onClick={() => setLocationTab("map")}
               >
                 <i className="fa fa-map-marker"></i>
               </button>
             </li>
+            {locationMap.streetEmbed && (
             <li className="nav-item">
               <button
                 type="button"
                 className={`nav-link btn btn-block ${locationTab === "street" ? "active" : ""}`}
+                aria-label="Street view"
                 onClick={() => setLocationTab("street")}
               >
                 <i className="fa fa-street-view"></i>
               </button>
             </li>
+            )}
           </ul>
           <div className="tab-content">
             <div
@@ -185,6 +191,7 @@ function PropertyDetailContent({
                 locationTab === "street" ? "show active" : ""
               }`}
             >
+              {locationMap.streetEmbed && (
               <iframe
                 className="h600 w100"
                 src={locationMap.streetEmbed}
@@ -193,10 +200,12 @@ function PropertyDetailContent({
                 loading="lazy"
                 title="Street view"
               ></iframe>
+              )}
             </div>
           </div>
         </div>
-        {/* WHAT'S NEARBY */}
+        )}
+        {nearby.length > 0 && (
         <div className="single__detail-features">
           <h5 className="text-capitalize detail-heading">what's nearby</h5>
           <div className="single__detail-features-nearby">
@@ -220,6 +229,7 @@ function PropertyDetailContent({
             ))}
           </div>
         </div>
+        )}
       </div>
     </div>
   );

@@ -29,12 +29,12 @@ function ProfileCard({
             <p className="text-capitalize mb-1">{subtitle}</p>
             <ul className="list-unstyled mt-2">
                 <li>
-                    <a href="javascript:void(0)" className="text-capitalize">
+                    <span className="text-capitalize">
                         <span>
                             <i className="fa fa-building"></i> office :
                         </span>{" "}
                         {office}
-                    </a>
+                    </span>
                 </li>
                 <li>
                     <a href={`tel:${mobile}`} className="text-capitalize">
@@ -45,12 +45,12 @@ function ProfileCard({
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" className="text-capitalize">
+                    <span className="text-capitalize">
                         <span>
                             <i className="fa fa-fax"></i> fax :
                         </span>{" "}
                         {fax}
-                    </a>
+                    </span>
                 </li>
                 <li>
                     <a href={`mailto:${email}`} className="text-capitalize">

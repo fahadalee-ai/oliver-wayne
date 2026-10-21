@@ -1,141 +1,151 @@
+import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import CallToAction from "../../sections/CallToAction/CallToAction";
 import { img } from "../../../utils/asset";
 import { propertyTypes } from "../../../data/filters";
 
-function Footer({ variant = "solid" }) {
-  const isImage = variant === "image";
+const exploreLinks = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Properties", to: "/properties" },
+  { label: "Add a listing", to: "/add-listing" },
+  { label: "Membership", to: "/membership" },
+  { label: "Lessors", to: "/lessors" },
+  { label: "Management", to: "/property-management" },
+  { label: "Blog", to: "/blogs" },
+  { label: "Contact", to: "/contact" },
+];
+
+const legalLinks = [
+  { label: "Privacy", to: "/contact#privacy" },
+  { label: "Contact", to: "/contact" },
+  { label: "About", to: "/about" },
+  { label: "Management", to: "/property-management" },
+  { label: "FAQ", to: "/contact#faq" },
+];
+
+function Footer() {
+  const emailId = useId();
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [status, setStatus] = useState("");
+
+  function onSubscribe(event) {
+    event.preventDefault();
+    const value = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setError("Enter a valid email address.");
+      setStatus("");
+      return;
+    }
+    setError("");
+    setStatus(
+      "This site does not send a newsletter. Nothing was saved. Email membership@ollywayne.com from your own mail app."
+    );
+    setEmail("");
+  }
 
   return (
     <>
       <CallToAction />
-      <footer>
-        <div
-          className={`wrapper__footer ${isImage ? "bg-theme-footer" : "bg__footer"}`}
-        >
-          <div className=" container">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="widget__footer mb-3">
-                  {/*  <h4 className="footer-title">company info</h4>  */}
-                  <figure>
-                    <img
-                      src={img("logo_white_horizontal.png")}
-                      alt="logo"
-                      className="logo-footer"
-                    />
-                  </figure>
-                  <p>
-                    Oliver Wayne is built for people who need a comprehensive
-                    list of all temporary lodging options in a single area.
-                  </p>
-                </div>
-                <div className="border-line"></div>
-                <div className="widget__footer">
-                  <h4 className="footer-title">follow us </h4>
-                  {/*  <p>
-                        Follow us and stay in touch to get the latest news
-                    </p>  */}
-                  <p>
-                    <button className="btn btn-social btn-social-o facebook mr-1">
-                      <i className="fa fa-facebook-f"></i>
-                    </button>
-                    <button className="btn btn-social btn-social-o twitter mr-1">
-                      <i className="fa fa-twitter"></i>
-                    </button>
-
-                    <button className="btn btn-social btn-social-o linkedin mr-1">
-                      <i className="fa fa-linkedin"></i>
-                    </button>
-                    <button className="btn btn-social btn-social-o instagram mr-1">
-                      <i className="fa fa-instagram"></i>
-                    </button>
-
-                    <button className="btn btn-social btn-social-o youtube mr-1">
-                      <i className="fa fa-youtube"></i>
-                    </button>
-                  </p>
-                </div>
+      <footer className="site-footer">
+        <div className="site-footer__main">
+          <div className="container">
+            <div className="site-footer__grid">
+              <div className="site-footer__brand">
+                <Link to="/" className="site-footer__logo-link">
+                  <img
+                    src={img("logo_white_horizontal.png")}
+                    alt="Oliver Wayne LLC"
+                    className="site-footer__logo"
+                  />
+                </Link>
+                <p>
+                  Oliver Wayne offers a comprehensive directory of temporary
+                  lodging for critical infrastructure workers and contractors,
+                  along with property management services.
+                </p>
               </div>
 
-              {/*  QUICK LINKS  */}
-              <div className="col-md-4">
-                <div className="widget__footer">
-                  <h4 className="footer-title">Quick Links</h4>
-                  <div className="link__category">
-                    <ul className="list-unstyled ">
-                      {propertyTypes.map((type) => (
-                        <li className="list-inline-item" key={type}>
-                          <Link to="/properties">{type}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              <nav className="site-footer__explore" aria-label="Footer">
+                <h2 className="site-footer__title">Explore</h2>
+                <ul className="site-footer__links">
+                  {exploreLinks.map((item) => (
+                    <li key={item.to}>
+                      <Link to={item.to}>{item.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
 
-              {/*  NEWSLETTERS  */}
-              <div className="col-md-4">
-                <div className="widget__footer">
-                  <h4 className="footer-title">newsletter</h4>
-                  {/*  Form Newsletter  */}
+              <nav className="site-footer__types" aria-label="Property types">
+                <h2 className="site-footer__title">Lodging types</h2>
+                <ul className="site-footer__links">
+                  {propertyTypes.map((type) => (
+                    <li key={type}>
+                      <Link to={`/properties?type=${encodeURIComponent(type)}`}>
+                        {type}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
 
-                  <div className="widget__form-newsletter ">
-                    <p>
-                      Don’t miss to subscribe to our news feeds, kindly fill the
-                      form below
+              <div className="site-footer__updates">
+                <p className="site-footer__note">
+                  Membership questions can be sent to{" "}
+                  <a href="mailto:membership@ollywayne.com">
+                    membership@ollywayne.com
+                  </a>
+                  .
+                </p>
+                <div className="site-footer__updates-main">
+                <h2 className="site-footer__title">Updates</h2>
+                <form className="site-footer__form" onSubmit={onSubscribe} noValidate>
+                  <label htmlFor={emailId}>Email address</label>
+                  <input
+                    id={emailId}
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                    placeholder="Email"
+                    value={email}
+                    aria-invalid={error ? true : undefined}
+                    aria-describedby={error ? `${emailId}-error` : undefined}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                      setError("");
+                      setStatus("");
+                    }}
+                  />
+                  {error && (
+                    <p id={`${emailId}-error`} className="site-footer__error">
+                      {error}
                     </p>
-                    <div className="mt-3">
-                      <input
-                        type="text"
-                        className="form-control mb-2"
-                        placeholder="Your email address"
-                      />
-
-                      <button
-                        className="btn btn-primary btn-block text-capitalize"
-                        type="button"
-                      >
-                        subscribe
-                      </button>
-                    </div>
-                  </div>
+                  )}
+                  <button type="submit">Subscribe</button>
+                  {status && (
+                    <p className="site-footer__status" role="status">
+                      {status}
+                    </p>
+                  )}
+                </form>
                 </div>
               </div>
-              {/*  END NEWSLETTER  */}
             </div>
           </div>
         </div>
 
-        {/*  Footer Bottom  */}
-        <div className={isImage ? "bg__footer-bottom-v1" : "bg__footer-bottom"}>
-          <div className="container">
-            <div className="row flex-column-reverse flex-md-row">
-              <div className="col-md-6">
-                <span>
-                  © 2026 Oliver Wayne LLC
-                </span>
-              </div>
-              <div className="col-md-6">
-                <ul className="list-inline ">
-                  <li className="list-inline-item">
-                    <a href="javascript:void(0)">privacy</a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="javascript:void(0)">contact</a>
-                  </li>
-                  <li className="list-inline-item">
-                    <Link to="/about">about</Link>
-                  </li>
-                  <li className="list-inline-item">
-                    <Link to="/property-management">management</Link>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="javascript:void(0)">faq</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div className="site-footer__bar">
+          <div className="container site-footer__bar-inner">
+            <p>© 2026 Oliver Wayne LLC</p>
+            <ul>
+              {legalLinks.map((item) => (
+                <li key={item.label}>
+                  <Link to={item.to}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </footer>

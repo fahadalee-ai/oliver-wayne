@@ -3,6 +3,7 @@ import { useLocation, matchPath } from "react-router-dom";
 import { normalizePathname } from "../utils/normalizePathname";
 import { blogs } from "../data/blogs";
 import { propertyListings } from "../data/propertyListings";
+import { loadUserListings } from "../listings/storage";
 import { agents } from "../data/agents";
 import { agencies } from "../data/agencies";
 
@@ -15,6 +16,8 @@ const staticTitles = {
   "/lessors": "Lessors",
   "/property-management": "Property Management",
   "/properties": "Properties",
+  "/add-listing": "Add Listing",
+  "/contact": "Contact",
   "/blogs": "Blog",
   "/agents": "Agents",
   "/agencies": "Agencies",
@@ -27,10 +30,11 @@ function resolveTitle(pathname) {
 
   const property = matchPath("/property/:id", pathname);
   if (property) {
-    const item = propertyListings.find(
+    const catalog = [...loadUserListings(), ...propertyListings];
+    const item = catalog.find(
       (p) => String(p.id) === property.params.id
     );
-    return item?.title || "Property Details";
+    return item?.title || "Property Not Found";
   }
 
   const blog = matchPath("/blog/:id", pathname);

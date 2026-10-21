@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "../../assets/css/PropertyDetailGallery.css";
 
-function PropertyDetailGallery({ images = [] }) {
+function PropertyDetailGallery({ images = [], title = "Property" }) {
     if (!images.length) return null;
     return (
         <div className="slider__property bg-light">
@@ -16,7 +16,7 @@ function PropertyDetailGallery({ images = [] }) {
                 spaceBetween={16}
                 loop={images.length > 2}
                 navigation
-                autoplay={{ delay: 4000, disableOnInteraction: false }}
+                autoplay={images.length > 1 ? { delay: 4000, disableOnInteraction: false } : false}
                 breakpoints={{
                     768: { slidesPerView: 1.6 },
                     1200: { slidesPerView: 2.2 },
@@ -25,7 +25,7 @@ function PropertyDetailGallery({ images = [] }) {
                 {images.map((src, index) => (
                     <SwiperSlide key={index}>
                         <div className="item">
-                            <img src={src} alt="" className="img-fluid" />
+                            <img src={src} alt={`${title} photo ${index + 1}`} className="img-fluid" />
                         </div>
                     </SwiperSlide>
                 ))}
