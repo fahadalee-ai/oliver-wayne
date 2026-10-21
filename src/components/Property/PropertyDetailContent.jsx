@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+function stat(label, value) {
+  if (value === undefined || value === null || String(value).trim() === "") return null;
+  return { label, value: String(value) };
+}
+
 function PropertyDetailContent({
   description = [],
   detailLeft = [],
@@ -7,230 +12,143 @@ function PropertyDetailContent({
   additionalLeft = [],
   additionalRight = [],
   features = [],
+  beds,
+  baths,
+  area,
+  rooms,
   floorPlans = [],
   locationMap = {},
   nearby = [],
 }) {
-  const [expanded, setExpanded] = useState(false);
   const [openFloor, setOpenFloor] = useState(floorPlans[0]?.id ?? null);
   const [locationTab, setLocationTab] = useState("map");
+  const stats = [
+    stat("Bedrooms", beds),
+    stat("Bathrooms", baths),
+    stat("Area", area),
+    stat("Rooms", rooms),
+  ].filter(Boolean);
+  const facts = [...detailLeft, ...detailRight, ...additionalLeft, ...additionalRight];
 
   return (
-    <div className="row">
-      <div className="col-lg-12">
-        {/* DESCRIPTION */}
-        <div className="single__detail-desc">
-          <h5 className="text-capitalize detail-heading mt-0">description</h5>
-          <div className={`show__more ${expanded ? "visible" : ""}`}>
-            {description.map((text, index) => (
-              <p key={index}>{text}</p>
+    <div className="property-main">
+      {stats.length > 0 && (
+        <ul className="property-stats">
+          {stats.map((item) => (
+            <li key={item.label}>
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {description.length > 0 && (
+        <section>
+          <h2>Description</h2>
+          {description.map((text) => (
+            <p key={text}>{text}</p>
+          ))}
+        </section>
+      )}
+
+      {facts.length > 0 && (
+        <section>
+          <h2>Property details</h2>
+          <dl className="property-facts">
+            {facts.map((item) => (
+              <div key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
             ))}
-            {!expanded && description.length > 1 && (
-              <button
-                type="button"
-                className="show__more-button"
-                onClick={() => setExpanded(true)}
-              >
-                read more
-              </button>
-            )}
-          </div>
-        </div>
-        <div className="clearfix"></div>
-        {/* PROPERTY DETAILS */}
-        <div className="single__detail-features">
-          <h5 className="text-capitalize detail-heading">property details</h5>
-          <div className="property__detail-info">
-            <div className="row">
-              <div className="col-md-6 col-lg-6">
-                <ul className="property__detail-info-list list-unstyled">
-                  {detailLeft.map((item) => (
-                    <li key={item.label}>
-                      <b>{item.label}:</b> {item.value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="col-md-6 col-lg-6">
-                <ul className="property__detail-info-list list-unstyled">
-                  {detailRight.map((item) => (
-                    <li key={item.label}>
-                      <b>{item.label}:</b> {item.value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            {(additionalLeft.length > 0 || additionalRight.length > 0) && (
-            <>
-            <h6 className="text-primary">Additional details</h6>
-            <div className="row">
-              <div className="col-md-6 col-lg-6">
-                <ul className="property__detail-info-list list-unstyled">
-                  {additionalLeft.map((item) => (
-                    <li key={`add-${item.label}`}>
-                      <b>{item.label}:</b> {item.value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="col-md-6 col-lg-6">
-                <ul className="property__detail-info-list list-unstyled">
-                  {additionalRight.map((item) => (
-                    <li key={`add-${item.label}`}>
-                      <b>{item.label}:</b> {item.value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            </>
-            )}
-          </div>
-        </div>
-        <div className="clearfix"></div>
-        {/* FEATURES */}
-        {features.length > 0 && (
-        <div className="single__detail-features">
-          <h5 className="text-capitalize detail-heading">features</h5>
-          <ul className="list-unstyled icon-checkbox">
+          </dl>
+        </section>
+      )}
+
+      {features.length > 0 && (
+        <section>
+          <h2>Features</h2>
+          <ul className="property-features">
             {features.map((feature) => (
               <li key={feature}>{feature}</li>
             ))}
           </ul>
-        </div>
-        )}
-        {floorPlans.length > 0 && (
-        <div className="single__detail-features">
-          <h5 className="text-capitalize detail-heading">floor plan</h5>
-          <div className="floorplan" role="tablist">
+        </section>
+      )}
+
+      {floorPlans.length > 0 && (
+        <section>
+          <h2>Floor plans</h2>
+          <div className="property-plans">
             {floorPlans.map((plan) => {
               const isOpen = openFloor === plan.id;
               return (
-                <div className="card" key={plan.id}>
-                  <div className="card-header" role="tab">
-                    <button
-                      type="button"
-                      className={`floorplan-toggle text-capitalize ${isOpen ? "" : "collapsed"}`}
-                      aria-expanded={isOpen}
-                      onClick={() => setOpenFloor(isOpen ? null : plan.id)}
-                    >
-                      {plan.title}{" "}
-                      <span className="badge badge-light rounded p-1 ml-2">
-                        {plan.size}
-                      </span>
-                    </button>
-                  </div>
-                  <div
-                    className={`collapse ${isOpen ? "show" : ""}`}
-                    role="tabpanel"
+                <article key={plan.id}>
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenFloor(isOpen ? null : plan.id)}
                   >
-                    <div className="card-body">
-                      <figure>
-                        <img
-                          src={plan.image}
-                          alt={plan.title}
-                          className="img-fluid"
-                        />
-                      </figure>
-                      {plan.text}
+                    <span>{plan.title}</span>
+                    <span>{plan.size}</span>
+                  </button>
+                  {isOpen && (
+                    <div>
+                      {plan.image ? <img src={plan.image} alt={plan.title} /> : null}
+                      {plan.text ? <p>{plan.text}</p> : null}
                     </div>
-                  </div>
-                </div>
+                  )}
+                </article>
               );
             })}
           </div>
-        </div>
-        )}
-        {locationMap?.mapEmbed && (
-        <div className="single__detail-features">
-          <h5 className="text-capitalize detail-heading">location</h5>
-          <ul className="nav nav-pills mb-3" role="tablist">
-            <li className="nav-item">
-              <button
-                type="button"
-                className={`nav-link btn btn-block ${locationTab === "map" ? "active" : ""}`}
-                aria-label="Map"
-                onClick={() => setLocationTab("map")}
-              >
-                <i className="fa fa-map-marker"></i>
-              </button>
-            </li>
+        </section>
+      )}
+
+      {locationMap?.mapEmbed && (
+        <section>
+          <h2>Location</h2>
+          <div className="property-map-tabs" role="tablist">
+            <button type="button" aria-selected={locationTab === "map"} onClick={() => setLocationTab("map")}>
+              Map
+            </button>
             {locationMap.streetEmbed && (
-            <li className="nav-item">
-              <button
-                type="button"
-                className={`nav-link btn btn-block ${locationTab === "street" ? "active" : ""}`}
-                aria-label="Street view"
-                onClick={() => setLocationTab("street")}
-              >
-                <i className="fa fa-street-view"></i>
+              <button type="button" aria-selected={locationTab === "street"} onClick={() => setLocationTab("street")}>
+                Street
               </button>
-            </li>
             )}
-          </ul>
-          <div className="tab-content">
-            <div
-              className={`tab-pane fade ${
-                locationTab === "map" ? "show active" : ""
-              }`}
-            >
-              <div id="map-canvas">
-                <iframe
-                  className="h600 w100"
-                  src={locationMap.mapEmbed}
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  title="Property map"
-                ></iframe>
-              </div>
-            </div>
-            <div
-              className={`tab-pane fade ${
-                locationTab === "street" ? "show active" : ""
-              }`}
-            >
-              {locationMap.streetEmbed && (
-              <iframe
-                className="h600 w100"
-                src={locationMap.streetEmbed}
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                title="Street view"
-              ></iframe>
-              )}
-            </div>
           </div>
-        </div>
-        )}
-        {nearby.length > 0 && (
-        <div className="single__detail-features">
-          <h5 className="text-capitalize detail-heading">what's nearby</h5>
-          <div className="single__detail-features-nearby">
+          <div className="property-map">
+            <iframe
+              src={locationTab === "street" ? locationMap.streetEmbed : locationMap.mapEmbed}
+              title={locationTab === "street" ? "Street view" : "Property map"}
+              loading="lazy"
+            />
+          </div>
+        </section>
+      )}
+
+      {nearby.length > 0 && (
+        <section>
+          <h2>What’s nearby</h2>
+          <div className="property-nearby">
             {nearby.map((group) => (
               <div key={group.id}>
-                <h6 className="text-capitalize">
-                  <span>
-                    <i className={`fa ${group.icon}`}></i>
-                  </span>{" "}
-                  {group.title}
-                </h6>
-                <ul className="list-unstyled">
+                <h3>{group.title}</h3>
+                <ul>
                   {group.places.map((place) => (
                     <li key={place.name}>
                       <span>{place.name}</span>
-                      <p>{place.distance}</p>
+                      <span>{place.distance}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-        </div>
-        )}
-      </div>
+        </section>
+      )}
     </div>
   );
 }

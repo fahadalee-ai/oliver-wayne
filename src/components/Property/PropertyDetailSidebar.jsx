@@ -1,7 +1,5 @@
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
-import Attachment from "../Attachment/Attachment";
-import PropertyDetailFilter from "./PropertyDetailFilter";
 
 function InquiryForm({ title }) {
   const formId = useId();
@@ -40,73 +38,47 @@ function InquiryForm({ title }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate>
-      <div className="profile__agent__body">
-        <div className="form-group">
-          <label className="sr-only" htmlFor={`${formId}-name`}>Your name</label>
-          <input
-            id={`${formId}-name`}
-            type="text"
-            className="form-control"
-            placeholder="Your name"
-            value={values.name}
-            aria-invalid={errors.name ? true : undefined}
-            onChange={(event) => update("name", event.target.value)}
-          />
-          {errors.name && <p className="form-error">{errors.name}</p>}
-        </div>
-        <div className="form-group">
-          <label className="sr-only" htmlFor={`${formId}-phone`}>Phone</label>
-          <input
-            id={`${formId}-phone`}
-            type="tel"
-            className="form-control"
-            placeholder="Phone (optional)"
-            value={values.phone}
-            aria-invalid={errors.phone ? true : undefined}
-            onChange={(event) => update("phone", event.target.value)}
-          />
-          {errors.phone && <p className="form-error">{errors.phone}</p>}
-        </div>
-        <div className="form-group">
-          <label className="sr-only" htmlFor={`${formId}-email`}>Email</label>
-          <input
-            id={`${formId}-email`}
-            type="email"
-            className="form-control"
-            placeholder="Email (optional)"
-            value={values.email}
-            aria-invalid={errors.email ? true : undefined}
-            onChange={(event) => update("email", event.target.value)}
-          />
-          {errors.email && <p className="form-error">{errors.email}</p>}
-        </div>
-        <div className="form-group mb-0">
-          <label className="sr-only" htmlFor={`${formId}-message`}>Message</label>
-          <textarea
-            id={`${formId}-message`}
-            className="form-control"
-            rows="5"
-            placeholder={`I'm interested in ${title}`}
-            value={values.message}
-            aria-invalid={errors.message ? true : undefined}
-            onChange={(event) => update("message", event.target.value)}
-          />
-          {errors.message && <p className="form-error">{errors.message}</p>}
-        </div>
-      </div>
-      <div className="profile__agent__footer">
-        <div className="form-group mb-0">
-          <button type="submit" className="btn btn-primary text-capitalize btn-block">
-            send message <i className="fa fa-paper-plane ml-1"></i>
-          </button>
-          {status && (
-            <p className="mt-3 mb-0" role="status">
-              {status}
-            </p>
-          )}
-        </div>
-      </div>
+    <form className="property-inquiry" onSubmit={onSubmit} noValidate>
+      <h3>Ask about this property</h3>
+      <label htmlFor={`${formId}-name`}>Your name</label>
+      <input
+        id={`${formId}-name`}
+        type="text"
+        value={values.name}
+        aria-invalid={errors.name ? true : undefined}
+        onChange={(event) => update("name", event.target.value)}
+      />
+      {errors.name && <p className="form-error">{errors.name}</p>}
+      <label htmlFor={`${formId}-phone`}>Phone (optional)</label>
+      <input
+        id={`${formId}-phone`}
+        type="tel"
+        value={values.phone}
+        aria-invalid={errors.phone ? true : undefined}
+        onChange={(event) => update("phone", event.target.value)}
+      />
+      {errors.phone && <p className="form-error">{errors.phone}</p>}
+      <label htmlFor={`${formId}-email`}>Email (optional)</label>
+      <input
+        id={`${formId}-email`}
+        type="email"
+        value={values.email}
+        aria-invalid={errors.email ? true : undefined}
+        onChange={(event) => update("email", event.target.value)}
+      />
+      {errors.email && <p className="form-error">{errors.email}</p>}
+      <label htmlFor={`${formId}-message`}>Message</label>
+      <textarea
+        id={`${formId}-message`}
+        rows="4"
+        value={values.message}
+        placeholder={`I'm interested in ${title}`}
+        aria-invalid={errors.message ? true : undefined}
+        onChange={(event) => update("message", event.target.value)}
+      />
+      {errors.message && <p className="form-error">{errors.message}</p>}
+      <button type="submit">Send message</button>
+      {status && <p role="status">{status}</p>}
     </form>
   );
 }
@@ -116,52 +88,32 @@ function PropertyDetailSidebar({
   agentImage,
   agentPhone,
   agentEmail,
+  agentId,
   title,
-  attachments = [],
 }) {
   return (
-    <div className="sticky-top">
-      <div className="profile__agent mb-30">
-        <div className="profile__agent__group">
-          <div className="profile__agent__header">
-            <div className="profile__agent__header-avatar">
-              <figure>
-                <img src={agentImage} alt={agentName || "Listing contact"} className="img-fluid" />
-              </figure>
-              <ul className="list-unstyled mb-0">
-                <li>
-                  <h5 className="text-capitalize">{agentName}</h5>
-                </li>
-                {agentPhone && (
-                  <li>
-                    <a href={`tel:${agentPhone}`}>
-                      <i className="fa fa-phone-square mr-1"></i>
-                      {agentPhone}
-                    </a>
-                  </li>
-                )}
-                {agentEmail && (
-                  <li>
-                    <a href={`mailto:${agentEmail}`}>
-                      <i className="fa fa-envelope mr-1"></i>
-                      {agentEmail}
-                    </a>
-                  </li>
-                )}
-                {!agentPhone && !agentEmail && (
-                  <li>
-                    <Link to="/contact">Contact Oliver Wayne</Link>
-                  </li>
-                )}
-              </ul>
-            </div>
-          </div>
-          <InquiryForm title={title} />
+    <aside className="property-side">
+      <div className="property-contact">
+        {agentImage ? <img src={agentImage} alt="" /> : null}
+        <div>
+          <p>Listing contact</p>
+          {agentId ? (
+            <h2>
+              <Link to={`/agent/${agentId}`}>{agentName}</Link>
+            </h2>
+          ) : (
+            <h2>{agentName || "Oliver Wayne"}</h2>
+          )}
+          {agentPhone ? <a href={`tel:${agentPhone}`}>{agentPhone}</a> : null}
+          {agentEmail ? <a href={`mailto:${agentEmail}`}>{agentEmail}</a> : null}
+          {!agentPhone && !agentEmail ? <Link to="/contact">Contact Oliver Wayne</Link> : null}
         </div>
       </div>
-      <Attachment attachments={attachments} />
-      <PropertyDetailFilter />
-    </div>
+      <InquiryForm title={title} />
+      <Link className="property-side__search" to="/properties">
+        Search other properties
+      </Link>
+    </aside>
   );
 }
 

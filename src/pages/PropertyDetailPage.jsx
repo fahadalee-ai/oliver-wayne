@@ -7,6 +7,7 @@ import PropertyDetailSidebar from "../components/Property/PropertyDetailSidebar"
 import PropertySimilar from "../components/Property/PropertySimilar";
 import { useListings } from "../listings/useListings";
 import { youtubeId } from "../utils/youtube";
+import { agents } from "../data/agents";
 
 function fact(label, value) {
     if (value === undefined || value === null || String(value).trim() === "") return null;
@@ -32,6 +33,9 @@ function PropertyDetailPage() {
         property.baths !== "" && property.baths !== undefined && property.baths !== null ? `${property.baths} bathrooms` : "",
         property.area || "",
     ].filter(Boolean);
+    const matchedAgent = agents.find(
+        (agent) => agent.name === (property.contactName || property.agentName)
+    );
     const detail = {
         ...property,
         description: property.description?.length
@@ -85,8 +89,9 @@ function PropertyDetailPage() {
             fact("Available", property.available),
         ].filter(Boolean),
         agentName: property.contactName || property.agentName,
-        agentPhone: property.contactPhone || property.agentPhone,
-        agentEmail: property.contactEmail || property.agentEmail,
+        agentPhone: property.contactPhone || property.agentPhone || matchedAgent?.mobile || "",
+        agentEmail: property.contactEmail || property.agentEmail || matchedAgent?.email || "",
+        agentId: property.source === "local" ? "" : matchedAgent?.id || "",
         youtubeId: youtubeId(property.youtube),
     };
     const similar = listings.filter((p) => String(p.id) !== id).slice(0, 6);
@@ -99,56 +104,52 @@ function PropertyDetailPage() {
                     { label: detail.title },
                 ]}
             />
-            <PropertyDetailHeader {...detail} />
-            {property.source === "local" && (
-                <div className="container pt-3">
-                    <p className="mb-2">
-                        This listing is saved in this browser only. It is not published.
-                    </p>
-                    <Link className="btn btn-primary mr-2" to={`/add-listing?edit=${property.id}`}>
-                        Edit listing
-                    </Link>
-                    <button
-                        type="button"
-                        className="btn btn-outline-primary"
-                        onClick={() => {
-                            if (window.confirm("Remove this listing from this browser?")) {
-                                removeListing(property.id);
-                                navigate("/properties");
-                            }
-                        }}
-                    >
-                        Remove listing
-                    </button>
-                </div>
-            )}
-            <PropertyDetailGallery images={detail.galleries} title={detail.title} />
-            {detail.youtubeId && (
-                <div className="container listing-video">
-                    <h2>Video</h2>
-                    <div className="listing-video__frame">
-                        <iframe
-                            src={`https://www.youtube-nocookie.com/embed/${detail.youtubeId}`}
-                            title={`${detail.title} video`}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        />
-                    </div>
-                </div>
-            )}
-            <section className="single__Detail">
+            <div className="property-page">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-lg-8">
-                            <PropertyDetailContent {...detail} />
+                    <PropertyDetailHeader {...detail} />
+                    {property.source === "local" && (
+                        <div className="property-local">
+                            <p>This listing is saved in this browser only. It is not published.</p>
+                            <div>
+                                <Link className="btn btn-primary" to={`/add-listing?edit=${property.id}`}>
+                                    Edit listing
+                                </Link>
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-primary"
+                                    onClick={() => {
+                                        if (window.confirm("Remove this listing from this browser?")) {
+                                            removeListing(property.id);
+                                            navigate("/properties");
+                                        }
+                                    }}
+                                >
+                                    Remove listing
+                                </button>
+                            </div>
                         </div>
-                        <div className="col-lg-4">
-                            <PropertyDetailSidebar {...detail} />
+                    )}
+                    <PropertyDetailGallery images={detail.galleries} title={detail.title} />
+                    {detail.youtubeId && (
+                        <div className="listing-video">
+                            <h2>Video</h2>
+                            <div className="listing-video__frame">
+                                <iframe
+                                    src={`https://www.youtube-nocookie.com/embed/${detail.youtubeId}`}
+                                    title={`${detail.title} video`}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
                         </div>
+                    )}
+                    <div className="property-page__layout">
+                        <PropertyDetailContent {...detail} />
+                        <PropertyDetailSidebar {...detail} />
                     </div>
                     <PropertySimilar properties={similar} />
                 </div>
-            </section>
+            </div>
         </>
     );
 }
