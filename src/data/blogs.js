@@ -4,7 +4,7 @@ export const defaultBlogDetail = {
   date: "July 15, 2026",
   category: "Temporary Lodging",
   content: [
-    "Temporary lodging for Essential Critical Infrastructure workers should be close to the jobsite, reasonably priced, clean, and quiet. Finding that fit quickly can make the difference between a smooth assignment and weeks of stress.",
+    "Temporary lodging for Essential Critical Infrastructure workers and contractors should be close to the jobsite, reasonably priced, clean, and quiet. Finding that fit quickly can make the difference between a smooth assignment and weeks of stress.",
     "Oliver Wayne researches lodging options near high-demand project areas and helps members compare price, cleanliness, safety, location, noise, and parking before they book.",
     "Whether you support shipbuilding, energy, manufacturing, or related trades, planning your lodging early protects your schedule, your budget, and your focus on the work that keeps critical systems running.",
   ],
@@ -19,7 +19,7 @@ export const defaultBlogDetail = {
     "Travel Housing",
   ],
   authorBio:
-    "Oliver Wayne helps Essential Critical Infrastructure workers find reliable temporary lodging near active project locations, with a focus on practical standards and member confidence.",
+    "Oliver Wayne helps Essential Critical Infrastructure workers and contractors find reliable temporary lodging near active project locations, with a focus on practical standards and member confidence.",
 };
 
 export const blogs = [
@@ -43,7 +43,7 @@ export const blogs = [
   },
   {
     id: 2,
-    title: "Why Critical Infrastructure Workers Need Better Housing Options",
+    title: "Why Critical Infrastructure Workers and Contractors Need Better Housing Options",
     excerpt:
       "Essential workers keep the country running—temporary lodging should match the reliability of the work they do.",
     image: img("blog2.jpg"),
@@ -135,7 +135,7 @@ export const blogs = [
     id: 7,
     title: "Membership Benefits for Temporary Lodging Seekers",
     excerpt:
-      "How Silver and Gold membership help Essential Critical Infrastructure workers find lodging with more confidence.",
+      "How Silver and Gold membership help Essential Critical Infrastructure workers and contractors find lodging with more confidence.",
     image: img("blog7.jpg"),
     badge: "Membership",
     authorName: "Michael Carter",

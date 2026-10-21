@@ -386,6 +386,14 @@ svg {
   max-width: 100%;
 }
 
+.wrap__intro h1 {
+  font-size: 46px;
+}
+
+.wrap__intro p {
+  font-size: 16px;
+}
+
 .swiper {
   max-width: 100%;
 }
@@ -456,14 +464,14 @@ svg {
   }
 
   .wrap__intro h1 {
-    font-size: clamp(1.55rem, 7vw, 2.35rem);
+    font-size: clamp(1.4rem, 6.2vw, 2.05rem);
     line-height: 1.2;
     margin-bottom: 0.7rem;
     overflow-wrap: break-word;
   }
 
   .wrap__intro p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.55;
     margin-bottom: 1.1rem;
   }

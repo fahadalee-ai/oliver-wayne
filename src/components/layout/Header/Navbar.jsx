@@ -60,6 +60,9 @@ function Navbar({ variant = "hero" }) {
                                 <Link className="nav-link" to="/" onClick={() => setMenuOpen(false)}>Home</Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to="/properties" onClick={() => setMenuOpen(false)}>Properties</Link>
                             </li>
                             <li className="nav-item">
@@ -76,9 +79,6 @@ function Navbar({ variant = "hero" }) {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/property-management" onClick={() => setMenuOpen(false)}>Management</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/about" onClick={() => setMenuOpen(false)}>About</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/blogs" onClick={() => setMenuOpen(false)}>Blog</Link>

@@ -6,11 +6,11 @@ export const membershipIntro = {
 export const membershipScope = {
   title: "Scope",
   paragraphs: [
-    "We focus our research on lodging availability in specific areas with a high need for Essential Critical Infrastructure Workers in the Defense Industrial Base. We have narrowed the search to include only Shipbuilding job locations currently.",
+    "We focus our research on lodging availability in specific areas with a high need for Essential Critical Infrastructure Workers and Contractors in the Defense Industrial Base. We have narrowed the search to include only Shipbuilding job locations currently.",
     "To qualify for membership, workers must have at least two years of experience with companies or subcontractors under contract with the Department of Defense (DoD), or at government-owned/contractor-operated (GOCO) or government-owned/government-operated (GOGO) facilities.",
     "A partial list of qualifying shipbuilding jobs includes engineers, designers, IT professionals, and manufacturing trades such as shipfitters, welders, pipefitters, electricians, machinists, painters, and blasters. Any job with two years of experience in building ships, submarines, or related parts qualifies you for free membership.",
-    "The Cybersecurity and Infrastructure Security Agency (CISA), which operates within the Department of Homeland Security (DHS), is responsible for securing the nation's critical infrastructure and can provide additional guidance on defining Essential Critical Infrastructure Workers.",
-    "Members with active accounts may be eligible for discounts as critical infrastructure workers.",
+    "The Cybersecurity and Infrastructure Security Agency (CISA), which operates within the Department of Homeland Security (DHS), is responsible for securing the nation's critical infrastructure and can provide additional guidance on defining Essential Critical Infrastructure Workers and Contractors.",
+    "Members with active accounts may be eligible for discounts as critical infrastructure workers and contractors.",
   ],
 };
 
@@ -34,7 +34,7 @@ export const membershipPlans = [
     id: 1,
     title: "Silver Member (Free)",
     price: "Free",
-    description: "Qualifications — Two to thirty years of experience",
+    description: "Two to Forty years of experience",
     applicationItems: [
       "Name",
       "Occupation",

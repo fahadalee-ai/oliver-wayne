@@ -66,7 +66,7 @@ export const aboutHomeTeaser = {
   paragraphs: [
     "We want to help you find the perfect place that fits your budget. Oliver Wayne strives to provide members with the most comprehensive list of local rental options near your workplace.",
     "Working away from home is hard enough; problems at your temporary home make it even harder. We help eliminate disappointments by reviewing each property on key factors and encouraging our members to share feedback on their stays.",
-    "Oliver Wayne supports Essential Critical Infrastructure Workers and recognizes the vital role they play in keeping our country safe and secure. Many lessors and owners offer discounts to Critical Infrastructure Workers for these reasons.",
+    "Oliver Wayne supports Essential Critical Infrastructure Workers and Contractors and recognizes the vital role they play in keeping our country safe and secure. Many lessors and owners offer discounts to Critical Infrastructure Workers and Contractors for these reasons.",
     "Oliver Wayne members can give lessors and owners a little peace of mind, knowing their tenants are less likely to cause problems because they work on government projects that require proper vetting.",
     "Oliver Wayne members are often better tenants and are given the first and best rental options.",
   ],

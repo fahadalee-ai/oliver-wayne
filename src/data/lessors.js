@@ -1,7 +1,7 @@
 export const lessorIntro = {
   title: "Lessor",
   subtitle:
-    "List your property with Oliver Wayne and reach vetted Essential Critical Infrastructure workers.",
+    "List your property with Oliver Wayne and reach vetted Essential Critical Infrastructure Workers and Contractors.",
 };
 
 export const lessorFeeStructure = {

@@ -8,13 +8,13 @@ function Hero() {
           <div className="col-12">
             <div className="wrap__intro-heading">
               <h1 className="text-capitalize">
-                Temporary Lodging for Critical Infrastructure Workers
+                Temporary Lodging for Critical Infrastructure Workers and
+                Contractors
               </h1>
               <p>
-                Browse a comprehensive selection of trusted local lodging
-                options designed for qualified professionals working across the
-                defense, energy, manufacturing, and other critical
-                infrastructure sectors.
+                Oliver Wayne offers a comprehensive directory of temporary
+                lodging for critical infrastructure workers and contractors,
+                along with property management services.
               </p>
 
               <div className="bg__overlay-black p-4">

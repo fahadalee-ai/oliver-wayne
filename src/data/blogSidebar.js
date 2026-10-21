@@ -18,7 +18,7 @@ export const recentNews = [
   },
   {
     id: 2,
-    title: "Why Critical Infrastructure Workers Need Better Housing Options",
+    title: "Why Critical Infrastructure Workers and Contractors Need Better Housing Options",
     image: img("blog2.jpg"),
     date: "July 12, 2026",
   },
